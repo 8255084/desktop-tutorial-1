@@ -46,7 +46,7 @@ if model_type == '改进的RT-DETR':
         st.error(f"Unable to load model. Check the specified path: {model_path}")
         st.error(ex)
 
-if model_type == 'YOLOv8':
+elif model_type == 'YOLOv8':
     model_path = Path('wights/yolov8.pt')
     # Load Pre-trained ML Model
     try:
