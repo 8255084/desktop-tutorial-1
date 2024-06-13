@@ -5,6 +5,7 @@ import PIL
 # External packages
 import streamlit as st
 from ultralytics import RTDETR
+from ultralytics import YOLO
 
 # Local Modules
 import settings
@@ -26,23 +27,34 @@ st.caption("使用改进的RT-DETR模型对肇事动物图片进行检测")
 st.sidebar.header("模型配置")
 
 # Model Options
-model_type = st.sidebar.radio(
+model_type0 = st.sidebar.radio(
     "请选择任务类型", ['目标检测'])
+model_type = st.sidebar.selectbox(
+    '请选择检测模型', ('改进的RT-DETR', 'YOLOv8')
+)
 
 confidence = st.sidebar.slider(
             '请滑动选择模型的置信度', min_value=0.0, max_value=1.0, value=0.5)
 
 # Selecting Detection Or Segmentation
-if model_type == '目标检测':
-    #model_path = Path(settings.DETECTION_MODEL)
+if model_type == '改进的RT-DETR':
     model_path = Path('wights/best.pt')
-
-# Load Pre-trained ML Model
-try:
+    # Load Pre-trained ML Model
+    try:
     model=RTDETR('weights/best.pt')
 except Exception as ex:
     st.error(f"Unable to load model. Check the specified path: {model_path}")
     st.error(ex)
+
+if model_type == 'YOLOv8':
+    model_path = Path('wights/yolov8.pt')
+    # Load Pre-trained ML Model
+    try:
+    model=YOLO('weights/yolov8.pt')
+except Exception as ex:
+    st.error(f"Unable to load model. Check the specified path: {model_path}")
+    st.error(ex)
+
 
 st.sidebar.header("图片配置")
 source_radio = st.sidebar.radio(
