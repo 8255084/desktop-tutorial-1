@@ -37,7 +37,7 @@ if model_type == 'Detection':
 
 # Load Pre-trained ML Model
 try:
-    model=RTDETR('Streamlit-Yolov8-ObjectDetection-master/weights/best.pt')
+    model=RTDETR('weights/best.pt')
 except Exception as ex:
     st.error(f"Unable to load model. Check the specified path: {model_path}")
     st.error(ex)
