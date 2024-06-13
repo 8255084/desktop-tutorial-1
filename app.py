@@ -41,19 +41,19 @@ if model_type == '改进的RT-DETR':
     model_path = Path('wights/best.pt')
     # Load Pre-trained ML Model
     try:
-    model=RTDETR('weights/best.pt')
-except Exception as ex:
-    st.error(f"Unable to load model. Check the specified path: {model_path}")
-    st.error(ex)
+        model=RTDETR('weights/best.pt')
+    except Exception as ex:
+        st.error(f"Unable to load model. Check the specified path: {model_path}")
+        st.error(ex)
 
 if model_type == 'YOLOv8':
     model_path = Path('wights/yolov8.pt')
     # Load Pre-trained ML Model
     try:
-    model=YOLO('weights/yolov8.pt')
-except Exception as ex:
-    st.error(f"Unable to load model. Check the specified path: {model_path}")
-    st.error(ex)
+        model=YOLO('weights/yolov8.pt')
+    except Exception as ex:
+        st.error(f"Unable to load model. Check the specified path: {model_path}")
+        st.error(ex)
 
 
 st.sidebar.header("图片配置")
