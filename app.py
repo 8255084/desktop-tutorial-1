@@ -12,27 +12,27 @@ import helper
 
 # Setting page layout
 st.set_page_config(
-    page_title="Car Engine Detection",
+    page_title="肇事动物检测系统",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # Main page heading
-st.title("Car Engine Detection")
-st.caption("developed by BlackDasher for my GOD")
+st.title("肇事动物检测系统")
+st.caption("使用改进的RT-DETR模型对肇事动物图片进行检测")
 
 # Sidebar
-st.sidebar.header("ML Model Config")
+st.sidebar.header("模型配置")
 
 # Model Options
 model_type = st.sidebar.radio(
-    "Select Task", ['Detection'])
+    "Select Task", ['目标检测'])
 
 confidence = 0.4
 
 # Selecting Detection Or Segmentation
-if model_type == 'Detection':
+if model_type == '目标检测':
     model_path = Path(settings.DETECTION_MODEL)
 
 # Load Pre-trained ML Model
@@ -42,15 +42,15 @@ except Exception as ex:
     st.error(f"Unable to load model. Check the specified path: {model_path}")
     st.error(ex)
 
-st.sidebar.header("Image/Video Config")
+st.sidebar.header("图片配置")
 source_radio = st.sidebar.radio(
-    "Select Source", settings.SOURCES_LIST)
+    "请选择资源类型", settings.SOURCES_LIST)
 
 source_img = None
 # If image is selected
 if source_radio == settings.IMAGE:
     source_img = st.sidebar.file_uploader(
-        "Choose an image...", type=("jpg", "jpeg", "png", 'bmp', 'webp'))
+        "请上传一张图片...", type=("jpg", "jpeg", "png", 'bmp', 'webp'))
 
     col1, col2 = st.columns(2)
 
@@ -59,14 +59,14 @@ if source_radio == settings.IMAGE:
             if source_img is None:
                 default_image_path = str(settings.DEFAULT_IMAGE)
                 default_image = PIL.Image.open(default_image_path)
-                st.image(default_image_path, caption="Default Image",
+                st.image(default_image_path, caption="默认图片",
                          use_column_width=True)
             else:
                 uploaded_image = PIL.Image.open(source_img)
-                st.image(source_img, caption="Uploaded Image",
+                st.image(source_img, caption="上传的图片",
                          use_column_width=True)
         except Exception as ex:
-            st.error("Error occurred while opening the image.")
+            st.error("打开图片时发生错误.")
             st.error(ex)
 
     with col2:
@@ -74,7 +74,7 @@ if source_radio == settings.IMAGE:
             default_detected_image_path = str(settings.DEFAULT_DETECT_IMAGE)
             default_detected_image = PIL.Image.open(
                 default_detected_image_path)
-            st.image(default_detected_image_path, caption='Detected Image',
+            st.image(default_detected_image_path, caption='检测结果',
                      use_column_width=True)
         else:
                 model=RTDETR('weights/best.pt')
@@ -87,4 +87,4 @@ if source_radio == settings.IMAGE:
                          use_column_width=True)
 
 else:
-    st.error("Please select a valid source type!")
+    st.error("请上传有效的类型!")
