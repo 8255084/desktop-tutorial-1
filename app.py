@@ -34,7 +34,8 @@ confidence = st.sidebar.slider(
 
 # Selecting Detection Or Segmentation
 if model_type == '目标检测':
-    model_path = Path(settings.DETECTION_MODEL)
+    #model_path = Path(settings.DETECTION_MODEL)
+    model_path = Path('wights/best.pt')
 
 # Load Pre-trained ML Model
 try:
