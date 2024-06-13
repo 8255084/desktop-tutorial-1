@@ -24,7 +24,7 @@ class RTDETR(Model):
         model (str): Path to the pre-trained model. Defaults to 'rtdetr-l.pt'.
     """
 
-    def __init__(self, model='Streamlit-Yolov8-ObjectDetection-master/weights/best.pt') -> None:
+    def __init__(self, model='weights/best.pt') -> None:
         """
         Initializes the RT-DETR model with the given pre-trained model file. Supports .pt and .yaml formats.
 
