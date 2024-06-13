@@ -1,0 +1,6 @@
+train: './train/images'
+val: './valid/images'
+test: './test/images'
+
+nc: 14
+names: ['棕熊', '赤链蛇', '鼬獾', '金雕', '青鼬', '眼镜王蛇', '藏酋猴', '猕猴', '赤狐', '银环蛇', '秃鹫', '野猪', '狼', '黄鼬']
