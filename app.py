@@ -77,7 +77,7 @@ if source_radio == settings.IMAGE:
             st.image(default_detected_image_path, caption='Detected Image',
                      use_column_width=True)
         else:
-                model=RTDETR('Streamlit-Yolov8-ObjectDetection-master/weights/best.pt')
+                model=RTDETR('weights/best.pt')
                 res = model.predict(uploaded_image,
                                     conf=confidence
                                     )
