@@ -27,7 +27,7 @@ st.sidebar.header("模型配置")
 
 # Model Options
 model_type = st.sidebar.radio(
-    "Select Task", ['目标检测'])
+    "请选择任务类型", ['目标检测'])
 
 confidence = 0.4
 
