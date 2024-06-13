@@ -421,7 +421,7 @@ class RTDETRDetectionModel(DetectionModel):
         predict: Performs a forward pass through the network and returns the output.
     """
 
-    def __init__(self, cfg='rtdetr-l.yaml', ch=3, nc=None, verbose=True):
+    def __init__(self, cfg='newbb-rep+mcca+fuse.yaml', ch=3, nc=None, verbose=True):
         """
         Initialize the RTDETRDetectionModel.
 
