@@ -15,7 +15,7 @@ if root_path not in sys.path:
 ROOT = root_path.relative_to(Path.cwd())
 
 # Sources
-IMAGE = 'Image'
+IMAGE = '图片'
 
 SOURCES_LIST = [IMAGE]
 
