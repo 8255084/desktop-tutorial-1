@@ -29,7 +29,8 @@ st.sidebar.header("模型配置")
 model_type = st.sidebar.radio(
     "请选择任务类型", ['目标检测'])
 
-confidence = 0.4
+confidence = st.sidebar.slider(
+            '请滑动选择模型的置信度', min_value=0.0, max_value=1.0, value=0.5)
 
 # Selecting Detection Or Segmentation
 if model_type == '目标检测':
