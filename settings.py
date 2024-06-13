@@ -26,4 +26,4 @@ DEFAULT_DETECT_IMAGE = IMAGES_DIR / 'output.jpg'
 
 # ML Model config
 MODEL_DIR = ROOT / 'weights'
-DETECTION_MODEL = 'weights/best.pt'
+DETECTION_MODEL = MODEL_DIR / 'best.pt'
