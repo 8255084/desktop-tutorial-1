@@ -4,8 +4,6 @@ import PIL
 
 # External packages
 import streamlit as st
-from ultralytics import RTDETR
-from ultralytics import YOLO
 
 # Local Modules
 import settings
@@ -38,6 +36,7 @@ confidence = st.sidebar.slider(
 
 # Selecting Detection Or Segmentation
 if model_type == '改进的RT-DETR':
+    from ultralytics import RTDETR
     model_path = Path('wights/best.pt')
     # Load Pre-trained ML Model
     try:
@@ -47,6 +46,7 @@ if model_type == '改进的RT-DETR':
         st.error(ex)
 
 elif model_type == 'YOLOv8':
+    from ultralytics import YOLO
     model_path = Path('wights/yolov8.pt')
     # Load Pre-trained ML Model
     try:
@@ -91,13 +91,16 @@ if source_radio == settings.IMAGE:
             st.image(default_detected_image_path, caption='检测结果',
                      use_column_width=True)
         else:
+            if model_type == '改进的RT-DETR':
                 model=RTDETR('weights/best.pt')
-                res = model.predict(uploaded_image,
-                                    conf=confidence
-                                    )
-                boxes = res[0].boxes
-                res_plotted = res[0].plot()[:, :, ::-1]
-                st.image(res_plotted, caption='检测结果',
+            elif model_type == 'YOLOv8':
+                model=YOLO('weights/yolov8.pt')
+            res = model.predict(uploaded_image,
+                                conf=confidence
+                                )
+            boxes = res[0].boxes
+            res_plotted = res[0].plot()[:, :, ::-1]
+            st.image(res_plotted, caption='检测结果',
                          use_column_width=True)
 
 else:
