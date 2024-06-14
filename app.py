@@ -115,6 +115,10 @@ if source_radio == settings.IMAGE:
             res_plotted = res[0].plot()[:, :, ::-1]
             st.image(res_plotted, caption='检测结果',
                          use_column_width=True)
+            #FPS
+            c_time = time.time()
+            fps = 1 / (c_time - p_time)
+            p_time = c_time
 
 
 else:
