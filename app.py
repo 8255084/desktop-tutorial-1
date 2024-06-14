@@ -9,6 +9,10 @@ import streamlit as st
 import settings
 import helper
 
+#counter
+from collections import Counter
+import json
+
 # Setting page layout
 st.set_page_config(
     page_title="肇事动物检测系统",
@@ -114,6 +118,17 @@ if source_radio == settings.IMAGE:
             res_plotted = res[0].plot()[:, :, ::-1]
             st.image(res_plotted, caption='检测结果',
                          use_column_width=True)
+            # Current number of classes
+            class_fq = dict(Counter(i for sub in current_no_class for i in set(sub)))
+            class_fq = json.dumps(class_fq, indent = 4)
+            class_fq = json.loads(class_fq)
+            df_fq = pd.DataFrame(class_fq.items(), columns=['Class', 'Number'])
+                    
+            # Updating Inference results
+            with st.container():
+                st.markdown("<h2>Inference Statistics</h2>", unsafe_allow_html=True)
+                st.markdown("<h3>Detected objects in curret Frame</h3>", unsafe_allow_html=True)
+                st.dataframe(df_fq, use_container_width=True)
 
 else:
     st.error("请上传有效的类型!")
