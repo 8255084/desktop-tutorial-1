@@ -34,10 +34,6 @@ model_type = st.sidebar.selectbox(
 
 confidence = st.sidebar.slider(
             '请滑动选择模型的置信度', min_value=0.0, max_value=1.0, value=0.5)
-draw_thick = st.sidebar.slider(
-            'Draw Thickness:', min_value=1,
-            max_value=20, value=3
-        )
 
 # Selecting Detection Or Segmentation
 if model_type == '改进的RT-DETR':
