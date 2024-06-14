@@ -9,10 +9,6 @@ import streamlit as st
 import settings
 import helper
 
-#FPS
-import tempfile
-import time
-import pandas as pd
 
 
 p_time = 0
@@ -123,11 +119,7 @@ if source_radio == settings.IMAGE:
             res_plotted = res[0].plot()[:, :, ::-1]
             st.image(res_plotted, caption='检测结果',
                          use_column_width=True)
-            #FPS
-            c_time = time.time()
-            fps = 1 / (c_time - p_time)
-            p_time = c_time
-            st.markdown(fps)
+
 
 
 else:
