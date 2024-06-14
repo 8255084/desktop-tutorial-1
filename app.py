@@ -9,6 +9,12 @@ import streamlit as st
 import settings
 import helper
 
+#FPS
+import tempfile
+import time
+
+p_time = 0
+
 
 # Setting page layout
 st.set_page_config(
@@ -119,6 +125,7 @@ if source_radio == settings.IMAGE:
             c_time = time.time()
             fps = 1 / (c_time - p_time)
             p_time = c_time
+            st.dataframe(fps)
 
 
 else:
