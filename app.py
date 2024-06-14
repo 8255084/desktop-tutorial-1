@@ -56,7 +56,7 @@ elif model_type == 'YOLOv8':
         st.error(ex)
 
 elif model_type == 'RT-DETR-r18':
-    from ultralytics import YOLO
+    from ultralytics import RTDETR
     model_path = Path('wights/RT-DETR.pt')
     # Load Pre-trained ML Model
     try:
