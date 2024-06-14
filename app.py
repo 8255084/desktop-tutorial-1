@@ -12,7 +12,7 @@ import helper
 #counter
 from collections import Counter
 import json
-from model_utils import get_yolo, color_picker_fn, get_system_stat
+#from model_utils import get_yolo, color_picker_fn, get_system_stat
 import pandas as pd
 
 # Setting page layout
