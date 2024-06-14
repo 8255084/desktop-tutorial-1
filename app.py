@@ -127,7 +127,7 @@ if source_radio == settings.IMAGE:
             c_time = time.time()
             fps = 1 / (c_time - p_time)
             p_time = c_time
-            st.dataframe(fps)
+            st.markdown(fps)
 
 
 else:
