@@ -120,7 +120,7 @@ if source_radio == settings.IMAGE:
                          use_column_width=True)
             # Current number of classes
             img, current_no_class = get_yolo(img, model_type, model, confidence, color_pick_list, class_labels, draw_thick)
-                    FRAME_WINDOW.image(img, channels='BGR')
+            FRAME_WINDOW.image(img, channels='BGR')
             class_fq = dict(Counter(i for sub in current_no_class for i in set(sub)))
             class_fq = json.dumps(class_fq, indent = 4)
             class_fq = json.loads(class_fq)
