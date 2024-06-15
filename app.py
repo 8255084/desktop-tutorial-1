@@ -9,6 +9,11 @@ import streamlit as st
 import settings
 import helper
 
+
+
+p_time = 0
+
+
 # Setting page layout
 st.set_page_config(
     page_title="肇事动物检测系统",
@@ -28,7 +33,7 @@ st.sidebar.header("模型配置")
 model_type0 = st.sidebar.radio(
     "请选择任务类型", ['目标检测'])
 model_type = st.sidebar.selectbox(
-    '请选择检测模型', ('改进的RT-DETR', 'YOLOv8')
+    '请选择检测模型', ('改进的RT-DETR', 'YOLOv8', 'RT-DETR-r18')
 )
 
 confidence = st.sidebar.slider(
@@ -51,6 +56,16 @@ elif model_type == 'YOLOv8':
     # Load Pre-trained ML Model
     try:
         model=YOLO('weights/yolov8.pt')
+    except Exception as ex:
+        st.error(f"Unable to load model. Check the specified path: {model_path}")
+        st.error(ex)
+
+elif model_type == 'RT-DETR-r18':
+    from ultralytics import RTDETR
+    model_path = Path('wights/RT-DETR.pt')
+    # Load Pre-trained ML Model
+    try:
+        model=RTDETR('weights/RT-DETR.pt')
     except Exception as ex:
         st.error(f"Unable to load model. Check the specified path: {model_path}")
         st.error(ex)
@@ -95,6 +110,8 @@ if source_radio == settings.IMAGE:
                 model=RTDETR('weights/best.pt')
             elif model_type == 'YOLOv8':
                 model=YOLO('weights/yolov8.pt')
+            elif model_type == 'RT-DETR-r18':
+                model=RTDETR('weights/RT-DETR.pt')
             res = model.predict(uploaded_image,
                                 conf=confidence
                                 )
@@ -102,6 +119,8 @@ if source_radio == settings.IMAGE:
             res_plotted = res[0].plot()[:, :, ::-1]
             st.image(res_plotted, caption='检测结果',
                          use_column_width=True)
+
+
 
 else:
     st.error("请上传有效的类型!")
